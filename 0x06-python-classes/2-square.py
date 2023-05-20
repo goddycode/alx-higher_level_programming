@@ -2,8 +2,8 @@
 
 """ Defining a square class  by: (based on 1-square.py)"""
 
-class Square:
 
+class Square:
 
     """Class initiation"""
     def __init__(self, size=0):
