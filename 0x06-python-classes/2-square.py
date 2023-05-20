@@ -16,7 +16,7 @@ class Square:
 
     @size.setter
     def size(self, val):
-        if val.isdigit():
+        if isinstance(val, int):
             if val < 0:
                 raise ValueError("size must be >= 0")
             else:
