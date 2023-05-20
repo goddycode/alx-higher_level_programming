@@ -1,4 +1,4 @@
-#!/usr.bin/python3
+#!/usr/bin/python3
 
 """
 Defining a square by: (based on 2-square.py)
