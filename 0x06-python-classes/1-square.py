@@ -5,4 +5,5 @@
 
 class Square:
     """REpresenting square class"""
-    __size ='None;
+    
+    __size ='None';
