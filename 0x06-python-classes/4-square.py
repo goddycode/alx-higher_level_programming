@@ -9,9 +9,12 @@ class Square:
     def __init__(self, size):
 
         """Initiating class"""
+
+        self.size = size
+
     @property
     def size(self):
-        return self.__size
+        return (self.__size)
 
     @size.setter
     def (size, value):
@@ -24,4 +27,4 @@ class Square:
     def area(self):
         """ working on area of a square """
 
-        return self.__size ** 2
+        return (self.__size ** 2)
