@@ -22,4 +22,4 @@ class Square:
             val < 0:
                 raise ValueError("size must be >= 0")
         else:
-            return self.__size
+            return self.__size = size
