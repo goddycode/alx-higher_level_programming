@@ -3,6 +3,7 @@
 """Defining a square class by: (based on 4-square.py)
 """
 
+
 class Square:
 
     """Square class definitions"""
@@ -23,16 +24,14 @@ class Square:
         self.__side = val
 
     def area(self):
-        return self.side ** 2
+        return self.__side ** 2
 
     def my_print(self):
         """Afunxtion to printts #"""
-        if size == 0:
-            prrint ()
-        elif size > 0:
+        if self.__size == 0:
+            prrint()
+        elif self.__size > 0:
             for i in range(self.__size):
                 for j in range(self.__size):
-                    print("#", end=" "
-                print()
-
-
+                    print("#", end=" ")
+                    print()
