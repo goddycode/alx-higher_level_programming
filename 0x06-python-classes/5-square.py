@@ -9,14 +9,17 @@ class Square:
     """Square class definitions"""
 
     def __init__(self, side=0):
+        """.............."""
         self.side = side
 
     @propety
     def side(self):
+        """___________"""
         return self.__side
 
     @side.setter
     def side(self, val):
+        """_____________"""
         if not isinstance(val, int):
             raise TypeError("size must be an integer")
         elif val < 0:
@@ -24,10 +27,12 @@ class Square:
         self.__side = val
 
     def area(self):
+        """............"""
+
         return self.__side ** 2
 
     def my_print(self):
-        """Afunxtion to printts #"""
+        """A funxtion to printts #"""
         if self.__size == 0:
             prrint()
         elif self.__size > 0:
