@@ -1,8 +1,8 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
-"""Script that defines an empty class"""
+"""Defining an empty class"""
 
 
 class Rectangle:
-    """Defining Rectangle class"""
-    pass
+"""......"""
+pass
