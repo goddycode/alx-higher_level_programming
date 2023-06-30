@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This script fetches from https://intranet.hbtn.io/status and displaying response
+This script fetches from https://intranet.hbtn.io/statu
 """
 
 import urllib.request
