@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This script takes URL as parameter, fetch URL and display value from reponse header usage: ./1-hbtn_header https://intranet.hbtn.io
+This script takes URL as parameter, fetches URL and display value
 """
 from sys import argv
 import urllib.request
