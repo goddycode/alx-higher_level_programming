@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
-This scripts accept URL & email as params, display response body utf-8, print error codes
-usage: ./7-error_code.py http://0.0.0.0:5000/status_401
+This scripts accept URL & email as params, display response body utf-8
 """
 from sys import argv
 import requests
