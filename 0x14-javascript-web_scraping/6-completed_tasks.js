@@ -21,8 +21,6 @@ request(apiUrl, function (err, response, body) {
           }
         }
       }
-
-      console.log('Number of completed tasks by user ID:');
       console.log(completedTasksByUser);
     } catch (error) {
       console.log('Error parsing JSON data:', error.message);
