@@ -1,52 +1,46 @@
 #!/usr/bin/node
 
 const request = require('request');
-const apiUrl = 'https://swapi.dev/api/';
 
-function fetchMovieCharacters(movieId) {
-  const movieUrl = `${apiUrl}films/${movieId}/`;
-
-  request(movieUrl, function (err, response, body) {
-    if (err) {
-      console.log('Error:', err);
-    } else if (response.statusCode === 200) {
-      try {
-        const movieData = JSON.parse(body);
-        const characterUrls = movieData.characters;
-
-        fetchCharactersData(characterUrls);
-      } catch (error) {
-        console.log('Error parsing movie data:', error.message);
+function getDataFrom (url) {
+  return new Promise(function (resolve, reject) {
+    request(url, function (err, _res, body) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(body);
       }
-    } else {
-      console.log('An error occurred. Status code:', response.statusCode);
-    }
+    });
   });
 }
 
-function fetchCharactersData(characterUrls) {
-  for (const characterUrl of characterUrls) {
-    request(characterUrl, function (err, response, body) {
-      if (err) {
-        console.log('Error:', err);
-      } else if (response.statusCode === 200) {
-        try {
-          const characterData = JSON.parse(body);
-          console.log(characterData.name);
-        } catch (error) {
-          console.log('Error parsing character data:', error.message);
-        }
-      } else {
-        console.log('An error occurred. Status code:', response.statusCode);
+function errHandler (err) {
+  console.log(err);
+}
+
+function printMovieCharacters (movieId) {
+  const movieUri = `https://swapi-api.hbtn.io/api/films/${movieId}`;
+
+  getDataFrom(movieUri)
+    .then(JSON.parse, errHandler)
+    .then(function (res) {
+      const characters = res.characters;
+      const promises = [];
+
+      for (let i = 0; i < characters.length; ++i) {
+        promises.push(getDataFrom(characters[i]));
       }
+
+      Promise.all(promises)
+        .then((results) => {
+          for (let i = 0; i < results.length; ++i) {
+            console.log(JSON.parse(results[i]).name);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
-  }
 }
 
-const movieId = process.argv[2];
-if (!movieId) {
-  console.log('Please provide a movie ID as the first argument.');
-} else {
-  fetchMovieCharacters(movieId);
-}
-
+printMovieCharacters(process.argv[2]);
