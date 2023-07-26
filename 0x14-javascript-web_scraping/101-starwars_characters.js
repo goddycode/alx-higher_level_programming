@@ -1,20 +1,52 @@
 #!/usr/bin/node
-const re = require('re');
-const url = 'https://swapi-api.hbtn.io/api/films/' + process.argv[2];
-request(url, function (error, response, body) {
-  if (!error) {
-    const characters = JSON.parse(body).characters;
-    printCharacters(characters, 0);
-  }
-});
 
-function printCharacters (characters, index) {
-  request(characters[index], function (error, response, body) {
-    if (!error) {
-      console.log(JSON.parse(body).name);
-      if (index + 1 < characters.length) {
-        printCharacters(characters, index + 1);
+const request = require('request');
+const apiUrl = 'https://swapi.dev/api/';
+
+function fetchMovieCharacters(movieId) {
+  const movieUrl = `${apiUrl}films/${movieId}/`;
+
+  request(movieUrl, function (err, response, body) {
+    if (err) {
+      console.log('Error:', err);
+    } else if (response.statusCode === 200) {
+      try {
+        const movieData = JSON.parse(body);
+        const characterUrls = movieData.characters;
+
+        fetchCharactersData(characterUrls);
+      } catch (error) {
+        console.log('Error parsing movie data:', error.message);
       }
+    } else {
+      console.log('An error occurred. Status code:', response.statusCode);
     }
   });
 }
+
+function fetchCharactersData(characterUrls) {
+  for (const characterUrl of characterUrls) {
+    request(characterUrl, function (err, response, body) {
+      if (err) {
+        console.log('Error:', err);
+      } else if (response.statusCode === 200) {
+        try {
+          const characterData = JSON.parse(body);
+          console.log(characterData.name);
+        } catch (error) {
+          console.log('Error parsing character data:', error.message);
+        }
+      } else {
+        console.log('An error occurred. Status code:', response.statusCode);
+      }
+    });
+  }
+}
+
+const movieId = process.argv[2];
+if (!movieId) {
+  console.log('Please provide a movie ID as the first argument.');
+} else {
+  fetchMovieCharacters(movieId);
+}
+
