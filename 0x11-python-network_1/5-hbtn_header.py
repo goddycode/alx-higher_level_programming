@@ -1,10 +1,12 @@
 #!/usr/bin/python3
+"""
+Takes URL as parameter, fetch URL and display value from reponse header
+usage: ./5-hbtn_header https://intranet.hbtn.io
+"""
+from sys import argv
 import requests
-import sys
 
-'''task 5 script'''
 
-if __name__ == '__main__':
-
-    res = requests.get(sys.argv[1])
-    print(res.headers.get('X-Request-Id'))
+if __name__ == "__main__":
+    r = requests.get(argv[1])
+    print(r.headers.get('X-Request-Id'))
