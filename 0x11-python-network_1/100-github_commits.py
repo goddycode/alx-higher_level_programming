@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Script taskes repo and owner name as argvs, use Github API to list last 10 commits
+Taskes repo and owner name as argvs, use Github API to list last 10 commits
 usage: ./100-github_commits.py [github_repo] [github_owner]
 """
 from sys import argv
